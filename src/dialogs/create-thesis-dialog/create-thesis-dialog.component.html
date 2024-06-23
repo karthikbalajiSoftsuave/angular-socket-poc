@@ -1,0 +1,62 @@
+<div>
+    <form [formGroup]="thesisForm" (ngSubmit)="save()" class="thesis-form">
+        <div class="heading">
+            <h4>Create thesis</h4>
+        </div>
+        <div class="sections">
+            <div class="thesis">
+                <div class="title">
+                    <h4>Title</h4>
+                </div>
+                <mat-form-field class="form-field thesis-form-field" appearance="outline">
+                    <input matInput placeholder="Title" formControlName="name">
+                    <mat-error
+                        *ngIf="thesisForm?.get('name')?.touched && ( thesisForm?.get('name')?.hasError('required') || thesisForm?.get('name')?.hasError('pattern'))">
+                        Title is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="thesis">
+                <div class="title">
+                    <h4>Author</h4>
+                </div>
+                <mat-form-field class="form-field thesis-form-field" appearance="outline">
+                    <input matInput placeholder="Author" formControlName="author">
+                    <mat-error
+                        *ngIf="thesisForm?.get('author')?.touched && ( thesisForm?.get('author')?.hasError('required') || thesisForm?.get('author')?.hasError('pattern'))">
+                        Author is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card">
+                <div class="title">
+                    <h4>Upload Thesis</h4>
+                </div>
+                <div class="drop_box">
+                    <div class="title">
+                        <h4>Select File here</h4>
+                    </div>
+                    <span>{{fileName}}</span>
+                    <span class="error" *ngIf="thesisForm?.get('file')?.touched && thesisForm?.get('file')?.hasError('required')">
+                        Thesis file is required.
+                    </span>
+                    <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+                    <input type="file" hidden accept=".doc,.docx,.pdf" id="fileID" style="display: none;"
+                        (change)="handleOnFileChange($event)" #fileupload>
+                    <button type="button" class="btn" (click)="handleOnOpenFile()">Choose File</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="thesis-action-btn">
+            <app-progress-button type="button" varient="outlined" class="outlined-btn" [btnName]="cancelBtnName"
+                (btnClick)="cancelEdit()"></app-progress-button>
+            <app-progress-button type="submit" [btnName]="data ? 'Update': 'Save'"
+                [isLoading]="formLoading"></app-progress-button>
+        </div>
+    </form>
+</div>

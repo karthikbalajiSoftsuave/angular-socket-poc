@@ -1,0 +1,19 @@
+<div>
+    <h2>PDF Document</h2>
+    <!-- Assume you have a PDF viewer here -->
+
+    <div>
+        <h3>Reviews</h3>
+        <ul>
+            <li *ngFor="let review of reviews">
+                {{ review.review }} - {{ review.createdTime | date:'short' }}
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Add a Review</h3>
+        <textarea [(ngModel)]="newReview"></textarea>
+        <button (click)="addReview()">Submit</button>
+    </div>
+</div>

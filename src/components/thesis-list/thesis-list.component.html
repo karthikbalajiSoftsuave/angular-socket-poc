@@ -1,0 +1,25 @@
+<div class="table-container">
+    <h2>List of Items</h2>
+    <app-progress-button btnName="Create Thesis" (btnClick)="handleOnCreateThesis()"></app-progress-button>
+
+    <table class="item-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let thesis of thesisList">
+                <td>{{ thesis.name }}</td>
+                <td>{{ thesis.author }}</td>
+                <td>
+                    <button (click)="handleOnReview(thesis)">
+                        Review
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
